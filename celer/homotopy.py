@@ -228,10 +228,13 @@ def celer_path(X, y, pb, eps=1e-3, n_alphas=100, alphas=None, l1_ratio=1.0,
 
         alphas = alpha_max / l1_ratio * np.geomspace(1, eps, n_alphas, dtype=X.dtype)
     else:
-        alphas = np.sort(alphas)[::-1]
+        # JARED
+        print('commented out sorting of `alphas` in homotopy/celer_path. Printed next is the value of `alphas`:\n', alphas)
+        # alphas = np.sort(alphas)[::-1]
 
     n_alphas = len(alphas)
-
+    # JARED
+    print('I expect this value to be 1. Here is `n_alphas` in homotopy/celer_path:', n_alphas)
     coefs = np.zeros((n_features, n_alphas), order='F', dtype=X.dtype)
     thetas = np.zeros((n_alphas, n_samples), dtype=X.dtype)
     dual_gaps = np.zeros(n_alphas)
@@ -308,7 +311,9 @@ def celer_path(X, y, pb, eps=1e-3, n_alphas=100, alphas=None, l1_ratio=1.0,
                     X_data, X_indices, X_indptr, X_sparse_scaling,
                     weights, len(grp_ptr) - 1, np.zeros(1, dtype=np.int32),
                     X_sparse_scaling.any())
-
+            # JARED
+            # may need to create an array of thetas -> one for each sample
+            print('`dnorm` value in  in homotopy/celer_path: ', dnorm)
             theta /= max(dnorm / (alpha * l1_ratio), n_samples)
 
         # celer modifies w, Xw, and theta in place:

@@ -1242,7 +1242,6 @@ class GroupLassoCV(LassoCV, LinearModelCV):
 
     def path(self, X, y, alphas, coef_init=None, **kwargs):
         """Compute GroupLasso path with Celer."""
-        print('about to run celer_path')
         alphas, coefs, dual_gaps = celer_path(
             X, y, "grouplasso", alphas=alphas, groups=self.groups,
             coef_init=coef_init, max_iter=self.max_iter,
