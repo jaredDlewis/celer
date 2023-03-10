@@ -39,7 +39,7 @@ setup(name=DISTNAME,
       install_requires=['numpy>=1.12', 'seaborn>=0.7', 'scipy>=0.18.0',
                         'matplotlib>=2.0.0', 'Cython>=0.26', 'libsvmdata>=0.3',
                         'scikit-learn>=1.0', 'xarray', 'download', 'tqdm'],
-      packages=find_packages(),
+      packages=['celer'],
       cmdclass={'build_ext': build_ext},
       ext_modules=[
           Extension('celer.lasso_fast',
